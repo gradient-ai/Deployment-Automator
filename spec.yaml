@@ -1,0 +1,13 @@
+image: paperspace/gradient-base:pt112-tf29-jax0314-py39-20220803
+port: 7860
+command:
+  - "export DEBIAN_FRONTEND=noninteractive && echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && pip install --upgrade pip && apt-get update && apt-get install git-lfs && git-lfs clone https://huggingface.co/spaces/susunghong/Self-Attention-Guidance && cd Self-Attention-Guidance && pip install -r requirements.txt && python app.py --share --autolaunch --listen --port 7860"
+repositories:
+  dataset: dsjepp0z7r3aaia
+  mountPath: opt/repos/
+  repositories:
+    - url: https://github.com/AUTOMATIC1111/stable-diffusion-webui/
+      name: stable-diffusion-webui
+resources:
+  replicas: 1
+  instanceType: A100-80G
